@@ -1,0 +1,56 @@
+#include<stdio.h>
+
+void FILL(char var[3][3])
+{
+	char fila,columna;
+	
+printf("ingrese la posicion que desea poner la x!!(primer numero fila, segundo numero columna)");
+scanf("%d",&fila);
+	
+		while (fila>3 or fila<1)
+		{
+			printf("el numero no es valido, debe de ser un numero entre 1 y 3");
+			scanf("%d",&columna);
+		}
+scanf("%d",&columna);
+
+		while (fila>3 or fila<1)
+		{
+			printf("el numero no es valido, debe de ser un numero entre 1 y 3");
+			scanf("%d",&columna);
+		}
+fila-=1;
+columna-=1;
+
+var[fila][columna]=1;
+}
+
+int main()
+{
+int i,j;
+char matriz[3][3]={{0,0,0},{0,0,0}};
+
+printf("a escogido tick tack toe!\n\n");
+
+	for (i=0;i<=2;i++)
+	{	
+		for (j=0;j<=2;j++)
+		{
+		printf("%d ",matriz[i][j]);
+		}
+	printf("\n\n");
+	}	
+
+FILL(matriz[3][3]);
+
+	for (i=0;i<=2;i++)
+		{	
+			for (j=0;j<=2;j++)
+			{
+			printf("%d ",matriz[i][j]);
+			}
+		printf("\n\n");
+		}	
+	
+	
+	
