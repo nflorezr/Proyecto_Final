@@ -1,0 +1,87 @@
+#include<stdio.h>
+	int i,j,sum,posicion;
+	char Jugador1='x';
+	char matriz[3][3];
+	
+void FILL()
+{
+		sum=1;
+		for (i=0;i<=2;i++)
+		{	
+			for (j=0;j<=2;j++)
+			{
+				matriz[i][j]=sum;
+				sum++;
+			}
+		}
+		for (i=0;i<=2;i++)
+		{	
+		for (j=0;j<=2;j++)
+		{
+			printf("%d  ",matriz[i][j]);
+		}
+	printf("\n\n");
+		}
+}
+void input()
+{
+	printf("ingresa la posicion que deseas poner una x!\n");
+	scanf("%d",&posicion);
+	
+	while (posicion>9 or posicion<1)
+	{
+		printf("la posicion debe de estar entre 1 y 9");
+		scanf("%d",&posicion);
+	}
+}
+
+void trick()
+{
+	if (posicion==1)
+		matriz[0][0]=Jugador1;	
+	else if (posicion==2)
+		matriz[0][1]=Jugador1;
+	else if (posicion==3)
+		matriz[0][2]=Jugador1;
+	else if (posicion==4)
+		matriz[1][0]=Jugador1;
+	else if (posicion==5)
+		matriz[1][1]=Jugador1;
+	else if (posicion==6)
+		matriz[1][2]=Jugador1;
+	else if (posicion==7)
+		matriz[2][0]=Jugador1;
+	else if (posicion==8)
+		matriz[2][1]=Jugador1;
+	else if (posicion==9)
+		matriz[2][2]=Jugador1;
+}
+void graph()
+{
+printf("\n");
+	for (i=0;i<=2;i++)
+{
+	for (j=0;j<=2;j++)
+	{
+		if (matriz[i][j]==1 or matriz[i][j]==2 or matriz[i][j]==3 or matriz[i][j]==4 or matriz[i][j]==5 or matriz[i][j]==6 or matriz[i][j]==7 or matriz[i][j]==8 or matriz[i][j]==9)
+		printf("%d  ",matriz[i][j]);
+		else
+		printf("%c  ",matriz[i][j]);
+	}
+	printf("\n\n");
+}
+}
+
+int main()
+{	
+printf("a escogido tick tack toe!\n\n");
+FILL();
+while (0<1)
+{
+input();
+trick();
+graph();
+}
+
+	
+}
