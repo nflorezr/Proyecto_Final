@@ -1,8 +1,23 @@
-
 #include <stdio.h>
-#include <math.h>
 
 main()
 {
-
+	int op;
+	printf ("MENU:\n");
+	printf ("1 - Tres en Linea\n");
+	printf ("2 - Adivinanza\n");
+	printf ("3 - Concentrese\n");
+	scanf("%d",&op);
+	switch (op)
+	{
+		case 1:
+			
+			break;
+		case 2:
+			
+			break;
+		case 3:
+			
+			break;
+	}
 }
