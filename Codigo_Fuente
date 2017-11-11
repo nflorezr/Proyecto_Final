@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-main()
+int main()
 {
 	int op;
 	printf ("MENU:\n");
@@ -11,13 +12,16 @@ main()
 	switch (op)
 	{
 		case 1:
-			
+			system("TrickTrackToe.exe");
 			break;
 		case 2:
 			
 			break;
 		case 3:
-			
+			system("Concentrese.exe");
+			break;
+		default:
+			printf("Error");
 			break;
 	}
 }
