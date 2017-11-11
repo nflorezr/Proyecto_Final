@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include <stdlib.h>
+#include<stdlib.h>
 
 int i,j,sum,posicion,acu=0,win=0;
 char Jugador1='X';
