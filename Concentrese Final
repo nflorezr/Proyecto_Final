@@ -36,7 +36,6 @@ class Jugador //CLASE PARA JUGADORES
 
 void Jugador::In_Pun(int P) //METODO PARA AUMENTAR 1 A LA CANTIDAD DE PUNTOS DEL JUGADOR
 {
-	int puntos=0;
 	if(P==5)
 	{
 		puntos=puntos+5;	
