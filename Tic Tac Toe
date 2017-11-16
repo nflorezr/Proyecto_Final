@@ -6,7 +6,8 @@
 void FILL()
 {
 	
-	//en esta funcion el objetivo es llenar la matriz que se volvera el plano para jugar, la matriz sera llenada por los numeros que representaran los botones en el teclado//
+	//en esta funcion el objetivo es llenar la matriz que se volvera el plano para jugar, 
+	la matriz sera llenada por los numeros que representaran los botones en el teclado//
 		sum=1;
 		for (i=2;i>=0;i--)
 		{	
@@ -40,7 +41,8 @@ void input()
 
 void trick()
 {
-// en esta funcion el objetivo es buscar si la posicion esta tomada y poner la X y el O respectivamente, se compara si la posicion es = al numero original puesta en la funcion FILL//
+// en esta funcion el objetivo es buscar si la posicion esta tomada y poner la X y el O respectivamente, 
+se compara si la posicion es = al numero original puesta en la funcion FILL//
 //si no es igual, entonces la posicion esta tomada//
 
  win=0;
@@ -121,7 +123,8 @@ void WIN()
 		printf("El jugador de la %c es el ganador!",Jugador1) ;
 		win=1;
 	}
-	//se detecta cuando 3 puntos son iguales, en caso de que sean iguales (mismo simbolo) entonces ese jugador sera marcado como el ganador transformando la variable win y enviandolo al main//
+	//se detecta cuando 3 puntos son iguales, en caso de que sean iguales (mismo simbolo) entonces ese jugador sera 
+	marcado como el ganador transformando la variable win y enviandolo al main//
 	
 	if (matriz[1][0]==matriz[1][1] and matriz[1][0]==matriz[1][2])
 	{
@@ -178,7 +181,8 @@ void TIE()
 		acu++;
 	}
 }
- //si el juego no ha terminado despues de 8 rondas entonces nadie podra ganar, esto se detecta con un acumulador que aumentara despues de cada ronda, si acu llega a 8 , el juego termina//
+ //si el juego no ha terminado despues de 8 rondas entonces nadie podra ganar, esto se detecta con un acumulador 
+ que aumentara despues de cada ronda, si acu llega a 8 , el juego termina//
 if (acu==8)
 {
 printf("Empate!");
@@ -199,7 +203,8 @@ while (1)
 
 input();
 trick();
-//este while es utilizado para los casos en que un jugador intente poner su simbolo en una posicion que ya ha sido tomada, el while provocara un repetimiento infinito de esa iteracion //
+//este while es utilizado para los casos en que un jugador intente poner su simbolo en una posicion que ya ha sido tomada, 
+el while provocara un repetimiento infinito de esa iteracion //
 //en esta caso se reutilizo la variable win de nuevo, mientras win valga 2 entonces se seguira repitiendo hasta que cambie de posicion//
 	while (win==2)
 	{	graph();
@@ -209,7 +214,8 @@ trick();
 graph();
 WIN();
 
-//una vez que el win es transformado, el programa lo mirara y dira si alguien gano o no, en caso que win no sea transformado, el pograma continuara hasta que alguien gane o empate//
+//una vez que el win es transformado, el programa lo mirara y dira si alguien gano o no, en caso que win no sea transformado, 
+el pograma continuara hasta que alguien gane o empate//
 	if (win==1)
 	{
 		break;
