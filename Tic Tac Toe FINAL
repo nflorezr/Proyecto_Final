@@ -1,0 +1,474 @@
+#include<stdio.h>
+	int i,j,sum,posicion,acu=0,win=0;
+	char Jugador1='X';
+	char matriz[3][3];
+	
+void FILL()
+{
+	
+	//en esta funcion el objetivo es llenar la matriz que se volvera el plano para jugar, la matriz sera llenada por los numeros que representaran los botones en el teclado//
+		sum=1;
+		for (i=2;i>=0;i--)
+		{	
+			for (j=0;j<=2;j++)
+			{
+				matriz[i][j]=sum;
+				sum++;
+			}
+		}
+		for (i=0;i<=2;i++)
+		{	printf("                   ");
+		for (j=0;j<=2;j++)
+		{
+			printf("%d  ",matriz[i][j]);
+		}
+	printf("\n\n");
+		}
+}
+void input()
+{
+	printf("ingresa la posicion que deseas poner una %c!\n\n",Jugador1);
+	scanf("%d",&posicion);
+	
+	
+	while (posicion>9 or posicion<1)
+	{
+		printf("la posicion debe de estar entre 1 y 9");
+		scanf("%d",&posicion);
+	}
+}
+
+void trick()
+{
+// en esta funcion el objetivo es buscar si la posicion esta tomada y poner la X y el O respectivamente, se compara si la posicion es = al numero original puesta en la funcion FILL//
+//si no es igual, entonces la posicion esta tomada//
+
+ win=0;
+	if (posicion==1 and matriz[2][0]==1)
+		matriz[2][0]=Jugador1;	
+	else if (posicion==2 and matriz[2][1]==2)
+		matriz[2][1]=Jugador1;
+	else if (posicion==3 and matriz[2][2]==3)
+		matriz[2][2]=Jugador1;
+	else if (posicion==4 and matriz[1][0]==4)
+		matriz[1][0]=Jugador1;
+	else if (posicion==5 and matriz[1][1]==5)
+		matriz[1][1]=Jugador1;
+	else if (posicion==6 and matriz[1][2]==6)
+		matriz[1][2]=Jugador1;
+	else if (posicion==7 and matriz[0][0]==7)
+		matriz[0][0]=Jugador1;
+	else if (posicion==8 and matriz[0][1]==8)
+		matriz[0][1]=Jugador1;
+	else if (posicion==9 and matriz[0][2]==9)
+		matriz[0][2]=Jugador1;
+	else
+	{
+		printf("\nla posicion ya esta tomada\n");
+		win=2;
+	}
+	
+}
+void graph()
+{
+	
+	//esta funcion tiene como una funcionalidad mostrar la matriz despues de cada jugada//
+printf("\n");
+	for (i=0;i<=2;i++)
+{ printf("                   ");
+	for (j=0;j<=2;j++)
+	{   
+	if (j==2)
+	
+	{
+		if (matriz[i][j]==1 or matriz[i][j]==2 or matriz[i][j]==3 or matriz[i][j]==4 or matriz[i][j]==5 or matriz[i][j]==6 or matriz[i][j]==7 or matriz[i][j]==8 or matriz[i][j]==9)
+		printf("%d  ",matriz[i][j]);
+		else
+		printf("%c  ",matriz[i][j]);
+	}
+	else
+	{
+			if (matriz[i][j]==1 or matriz[i][j]==2 or matriz[i][j]==3 or matriz[i][j]==4 or matriz[i][j]==5 or matriz[i][j]==6 or matriz[i][j]==7 or matriz[i][j]==8 or matriz[i][j]==9)
+		printf("%d | ",matriz[i][j]);
+		else
+		printf("%c | ",matriz[i][j]);
+		
+	}
+	
+	}
+	if (i!=2)
+	printf("\n                   ----------\n");
+	else
+	printf("\n");
+}
+printf("\n\n");
+}
+void Cambio()
+{
+	
+	//esta funcion cambia de jugador despues de que se haya hecho una jugada//
+	if (Jugador1=='X')
+	Jugador1='O';
+	else
+	Jugador1='X';
+}
+void WIN()
+
+//esta funcion esta diseñada para detectar cuando un jugador a ganado o cuando los jugadores han empatado//
+{ //Horizontales 
+	if (matriz[0][0]==matriz[0][1] and matriz[0][0]==matriz[0][2])
+	{
+		printf("El jugador de la %c es el ganador!",Jugador1) ;
+		win=1;
+	}
+	//se detecta cuando 3 puntos son iguales, en caso de que sean iguales (mismo simbolo) entonces ese jugador sera marcado como el ganador transformando la variable win y enviandolo al main//
+	
+	if (matriz[1][0]==matriz[1][1] and matriz[1][0]==matriz[1][2])
+	{
+		printf("El jugador de la %c es el ganador!",Jugador1) ;
+		win=1;
+	}
+	
+	if (matriz[2][0]==matriz[2][1] and matriz[2][0]==matriz[2][2])
+	{
+		printf("El jugador de la %c es el ganador!",Jugador1) ;
+		win=1;
+	}
+// ahora verticales
+    if (matriz[0][0]==matriz[1][0] and matriz[0][0]==matriz[2][0])
+	{
+		printf("El jugador de la %c es el ganador!",Jugador1) ;
+		win=1;
+	}
+	
+	if (matriz[0][1]==matriz[1][1] and matriz[0][1]==matriz[2][1])
+	{
+		printf("El jugador de la %c es el ganador!",Jugador1) ;
+		win=1;
+	}
+	
+	if (matriz[0][2]==matriz[1][2] and matriz[0][2]==matriz[2][2])
+	{
+		printf("El jugador de la %c es el ganador!",Jugador1) ;
+		win=1;
+	}
+//ahora Diagonales
+	if (matriz[0][0]==matriz[1][1] and matriz[0][0]==matriz[2][2])
+	{
+		printf("El jugador de la %c es el ganador!",Jugador1) ;
+		win=1;
+	}
+	
+	if (matriz[0][2]==matriz[1][1] and matriz[0][2]==matriz[2][0])
+	{
+		printf("El jugador de la %c es el ganador!",Jugador1) ;
+		win=1;
+	}
+}
+void TIE()
+{
+	//esta funcion decide cuando el juego a terminado en empate en la iteracion 6//
+
+	//el juego acaba cuando esta secuencia de posiciones sucede X O X  |   O X O |  O 8 X  |  X 8 O     //
+	//                                                          4 5 6  |   4 5 6 |  X 5 O  |  O 5 X        //
+	//                                                          O X O  |   X O X |  O 2 X  |  X 2 O       //
+	if (matriz[0][0]==matriz[2][1] and matriz[2][1]==matriz[0][2] and matriz[2][0]==matriz[0][1] and matriz[0][1]==matriz[2][2])
+	{
+		printf("Empate se han quedado sin jugadas!");
+		win=1;
+	}
+	
+		if (matriz[0][0]==matriz[1][2] and matriz[1][2]==matriz[2][0] and matriz[0][2]==matriz[1][0] and matriz[1][0]==matriz[2][2])
+	{
+		printf("Empate se han quedado sin jugadas!");
+		win=1;
+	}
+		
+		
+	for (i=0;i<=2;i++)
+{
+	for(j=0;j<=2;j++)
+	{
+		if (matriz[i][j]=='X' or matriz[i][j]=='O')
+		acu++;
+	}
+}
+ 
+ //acu representa cada ronda de juego, a partir de la ronda 6 acu empieza a jugar un rol vital para que el programa sepa cuando habra empates o no//
+// acu cuenta cuantas X y O hay puestas en el juego, asi que cuando acu==9 el juego no puede continuar//
+}
+
+bool TIE2()
+{
+	//esta funcion tiene todas las configuraciones posibles para la septima iteracion que pueden provocar un empate//
+	//se marca con un true si la configuracion existe y es posible continuar, la funcion retorna un false si ya no hay configuraciones para ganar//
+	//generando un empate//
+	
+//PRIMERO LAS POSICIONES CON UN NUMERO EN LA MITAD
+
+
+//VERTICALES//
+
+//                     X       
+//                     4      
+//                     X     // 
+if (acu==7 and
+
+
+(matriz[0][0]==matriz[2][0] and matriz[1][0]==4 )
+
+or(matriz[0][1]==matriz[2][1] and matriz[1][1]==5 )
+
+or(matriz[0][2]==matriz[2][2] and matriz[1][2]==6 )
+
+//HORIZONTALES//
+//                   X 8 X
+
+or(matriz[0][0]==matriz[0][2] and matriz[0][1]==8 )
+
+or(matriz[1][0]==matriz[1][2] and matriz[1][1]==5 )
+
+or(matriz[2][0]==matriz[2][2] and matriz[2][1]==2 )
+
+//DIAGONALES//
+//                   X
+//                     5
+//                       X               //
+
+or(matriz[0][0]==matriz[2][2] and matriz[1][1]==5 )
+
+or(matriz[2][0]==matriz[0][2] and matriz[1][1]==5 )
+
+//LUEGO LAS QUE TIENEN UN NUMERO EN LOS EXTREMOS//
+
+//VERTICALES//
+//                      X
+//                      X
+//                      2               //
+or(matriz[0][0]==matriz[1][0] and matriz[2][0]==1 )
+
+or(matriz[0][1]==matriz[1][1] and matriz[2][1]==2 )
+
+or(matriz[0][2]==matriz[1][2] and matriz[2][2]==3 )
+
+//y al contrario//
+//                      7
+//                      X
+//                      X               //                                                                  
+ 
+or(matriz[2][0]==matriz[1][0] and matriz[0][0]==7 )
+
+or(matriz[2][1]==matriz[1][1] and matriz[0][1]==8 )
+
+or(matriz[2][2]==matriz[1][2] and matriz[0][2]==9 )
+
+
+//HORIZONTALES//
+//                   X X 9               //
+
+or(matriz[0][0]==matriz[0][1] and matriz[0][2]==9 )
+
+or(matriz[1][0]==matriz[1][1] and matriz[1][2]==6 )
+
+or(matriz[2][0]==matriz[2][1] and matriz[2][2]==3 )
+
+
+//y al contrario
+//                   7 X X               //
+
+or(matriz[0][1]==matriz[0][2] and matriz[0][0]==7 )
+
+or(matriz[1][1]==matriz[1][2] and matriz[1][0]==4 )
+
+or(matriz[2][1]==matriz[2][2] and matriz[2][0]==1 )
+
+
+//DIAGONALES
+//                   1
+//                     X
+//                       X               //
+or(matriz[1][1]==matriz[2][2] and matriz[0][0]==7 )
+
+or(matriz[0][0]==matriz[1][1] and matriz[2][2]==3 )
+
+
+//y al contrario
+
+or(matriz[2][0]==matriz[1][1] and matriz[0][2]==9 )
+
+or(matriz[0][2]==matriz[1][1] and matriz[2][0]==1  ) )
+
+{ 
+ 	return true;
+}
+else 
+return false;
+
+}
+
+bool TIE3()
+{
+	
+	// funcion trabaja igual que TIE2 pero con la diferencia que se compara si el objeto puesto es igual o no a los objetos que ya estan en la configuracion original//
+	//si el objeto puesto es igual al de la configuracion original entonces el juego termina, si es diferente, entonces continua, marcado por true y false//
+	
+	if (acu==8 and
+ 
+  (matriz[0][0]==matriz[2][0] and matriz[1][0]==4 and Jugador1!=matriz[0][0])
+
+or(matriz[0][1]==matriz[2][1] and matriz[1][1]==5 and Jugador1!=matriz[0][1])
+
+or(matriz[0][2]==matriz[2][2] and matriz[1][2]==6 and Jugador1!=matriz[0][2])
+
+//HORIZONTALES//
+//                   X 8 X
+
+or(matriz[0][0]==matriz[0][2] and matriz[0][1]==8 and Jugador1!=matriz[0][0])
+
+or(matriz[1][0]==matriz[1][2] and matriz[1][1]==5 and Jugador1!=matriz[1][0])
+
+or(matriz[2][0]==matriz[2][2] and matriz[2][1]==2 and Jugador1!=matriz[2][0])
+
+//DIAGONALES//
+//                   X
+//                     5
+//                       X               //
+
+or(matriz[0][0]==matriz[2][2] and matriz[1][1]==5 and Jugador1!=matriz[0][0])
+
+or(matriz[2][0]==matriz[0][2] and matriz[1][1]==5 and Jugador1!=matriz[2][0])
+
+//LUEGO LAS QUE TIENEN UN NUMERO EN LOS EXTREMOS//
+
+//VERTICALES//
+//                      X
+//                      X
+//                      2               //
+or(matriz[0][0]==matriz[1][0] and matriz[2][0]==1 and Jugador1!=matriz[0][0])
+
+or(matriz[0][1]==matriz[1][1] and matriz[2][1]==2 and Jugador1!=matriz[0][1])
+
+or(matriz[0][2]==matriz[1][2] and matriz[2][2]==3 and Jugador1!=matriz[0][2])
+
+//y al contrario//
+//                      7
+//                      X
+//                      X               //                                                                  
+ 
+or(matriz[2][0]==matriz[1][0] and matriz[0][0]==7 and Jugador1!=matriz[2][0])
+
+or(matriz[2][1]==matriz[1][1] and matriz[0][1]==8 and Jugador1!=matriz[2][1])
+
+or(matriz[2][2]==matriz[1][2] and matriz[0][2]==9 and Jugador1!=matriz[2][2])
+
+
+//HORIZONTALES//
+//                   X X 9               //
+
+or(matriz[0][0]==matriz[0][1] and matriz[0][2]==9 and Jugador1!=matriz[0][0])
+
+or(matriz[1][0]==matriz[1][1] and matriz[1][2]==6 and Jugador1!=matriz[1][0])
+
+or(matriz[2][0]==matriz[2][1] and matriz[2][2]==3 and Jugador1!=matriz[2][0])
+
+
+//y al contrario
+//                   7 X X               //
+
+or(matriz[0][1]==matriz[0][2] and matriz[0][0]==7 and Jugador1!=matriz[0][1])
+
+or(matriz[1][1]==matriz[1][2] and matriz[1][0]==4 and Jugador1!=matriz[1][1])
+
+or(matriz[2][1]==matriz[2][2] and matriz[2][0]==1 and Jugador1!=matriz[2][1])
+
+
+//DIAGONALES
+//                   1
+//                     X
+//                       X               //
+or(matriz[1][1]==matriz[2][2] and matriz[0][0]==7 and Jugador1!=matriz[1][1])
+
+or(matriz[0][0]==matriz[1][1] and matriz[2][2]==3 and Jugador1!=matriz[0][0])
+
+
+//y al contrario
+
+or(matriz[2][0]==matriz[1][1] and matriz[0][2]==9 and Jugador1!=matriz[2][0])
+
+or(matriz[0][2]==matriz[1][1] and matriz[2][0]==1 and Jugador1!=matriz[0][2]) )
+
+{
+	return true;
+}
+else 
+return false;
+
+}
+
+int main()
+{	
+printf("a escogido tick tack toe!\n\n");
+FILL();
+// se utiliza 1 while para hacer que el juego continue hasta que haya un break, es decir, alguien gane o ambos empaten//
+while (1)
+{
+
+input();
+trick();
+//este while es utilizado para los casos en que un jugador intente poner su simbolo en una posicion que ya ha sido tomada, el while provocara un repetimiento infinito de esa iteracion //
+//en esta caso se reutilizo la variable win de nuevo, mientras win valga 2 entonces se seguira repitiendo hasta que cambie de posicion//
+	while (win==2)
+	{	graph();
+		input();
+		trick();		
+	}
+graph();
+WIN();
+
+//una vez que el win es transformado, el programa lo mirara y dira si alguien gano o no, en caso que win no sea transformado, el pograma continuara hasta que alguien gane o empate//
+	if (win==1)
+	{
+		break;
+	}
+	
+	
+// a partir de la sexta iteracion  el programa intentara encontrar cuando se presenta un empate antes de que se llenen todas las posiciones//
+
+//funcion para predecir el empate en la sexta iteracion (no se puede empatar antes)//
+TIE();
+
+//condicion para predecir el empate en la trasantepenultima jugada//
+if (acu==7)
+{ 
+	if (TIE2()==true)
+ ;//no hacer nada//
+		else 
+		{
+	 	printf("Empate! se han quedado sin jugadas!");
+ 		win=1;
+		}
+	
+}
+
+//condicion para predecir el empate en la penultima jugada//
+if (acu==8)
+{ 
+	if (TIE3()==true)
+ ;//no hacer nada//
+		else 
+		{
+	 	printf("Empate! se han quedado sin jugadas!");
+ 		win=1;
+		}
+	
+}
+
+acu=0;
+
+	if (win==1)
+	{
+		break;
+	}
+Cambio();
+}	
+}
